@@ -1,12 +1,11 @@
 package ink.lucasnsnt.exercicio2estruturadedados.sorting;
 
 import ink.lucasnsnt.exercicio2estruturadedados.models.Empresa;
+import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Stream;
 
+@Component
 public class BubbleSort {
 
     public void sort(List<Empresa> empresas) {

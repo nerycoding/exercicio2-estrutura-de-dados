@@ -37,7 +37,7 @@ public class EmpresaController {
         Resource txt = new FileSystemResource("empresa-ordenada.txt");
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "\"attachment; filename=\\\"empresa-ordenada.txt\\\"\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"empresa-ordenada.txt\"")
                 .body(txt);
 
     }

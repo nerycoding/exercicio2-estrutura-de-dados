@@ -1,11 +1,118 @@
-<!doctype html>
-<html lang="en">
+
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bubble Sorter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenador de Empresas</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        main {
+            width: min(90%, 420px);
+            text-align: center;
+        }
+
+        form {
+            display: grid;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        button {
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        #processando {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.95);
+            place-items: center;
+        }
+
+        #download {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
+<main>
+    <h1>Ordenador de Empresas</h1>
+
+    <p>
+        Ordene empresas pelo valor de mercado
+        utilizando o algoritmo Bubble Sort.
+    </p>
+
+    <form id="formulario"
+          method="post"
+          action="/processar"
+          enctype="multipart/form-data">
+
+        <input type="file"
+               id="arquivo"
+               name="arquivo"
+               accept=".txt"
+               required>
+
+        <button type="submit">Processar arquivo</button>
+    </form>
+
+    <a id="download" download="empresa-ordenada.txt">
+        Baixar arquivo ordenado
+    </a>
+</main>
+
+<div id="processando" role="status" aria-live="polite">
+    <p>Processando arquivo. Aguarde...</p>
+</div>
+
+<script>
+    const formulario = document.querySelector('#formulario');
+    formulario.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        console.log("Formulário enviado!");
+        const dados = new FormData(formulario);
+        const modal = document.querySelector('#processando');
+        const download = document.querySelector('#download');
+
+        try {
+
+            modal.style.display = 'grid';
+            download.style.display = "none";
+
+            const resposta = await fetch("/processar", {
+                method: "POST",
+                body: dados
+            });
+
+            if (!resposta.ok) throw new Error("Falha no processamento: " + resposta.status);
+
+            const arquivo = await resposta.blob();
+            download.href = URL.createObjectURL(arquivo);
+            download.style.display = "inline-block";
+
+        }catch(err) {
+            console.error(err);
+        }finally {
+            modal.style.display = 'none';
+        }
+
+
+    });
+
+
+</script>
 </body>
 </html>
