@@ -15,22 +15,22 @@ public class ProcessamentoPilotoService {
 
     private final PilotoTxtReader reader;
     private final PilotoTxtWriter writer;
-    private final InsertionSort bubbleSort;
+    private final InsertionSort insertionSort;
 
     public ProcessamentoPilotoService(PilotoTxtReader reader,
                                       PilotoTxtWriter writer,
-                                      InsertionSort bubbleSort) {
+                                      InsertionSort insertionSort) {
         this.reader = reader;
         this.writer = writer;
-        this.bubbleSort = bubbleSort;
+        this.insertionSort = insertionSort;
 
     }
 
     public void processarArquivo(InputStream inputStream) throws IOException {
 
-        List<Piloto> empresas = reader.leituraArquivo(inputStream);
-        bubbleSort.sort(empresas);
-        writer.write(empresas);
+        List<Piloto> pilotos = reader.leituraArquivo(inputStream);
+        insertionSort.sort(pilotos);
+        writer.write(pilotos);
 
     }
 
