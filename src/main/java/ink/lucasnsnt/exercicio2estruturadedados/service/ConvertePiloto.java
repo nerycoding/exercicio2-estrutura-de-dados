@@ -15,16 +15,21 @@ import java.util.stream.Stream;
 @Component
 public class ConvertePiloto {
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    DateTimeFormatter timeFormatter= DateTimeFormatter.ofPattern("HH:mm:ss");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    DateTimeFormatter timeFormatter= DateTimeFormatter.ofPattern("HH:mm:ss:SSS");
 
     public Piloto converteLinha(String linha) {
-        List<String> dadosPiloto = Arrays.stream(linha.split("\\|"))
+        List<String> dadosPiloto = Arrays.stream(linha.split(" - ", 4))
                 .map(String::trim).toList();
 
         LocalDateTime data = LocalDateTime.parse(dadosPiloto.get(0), formatter);
 
-        LocalTime tempo = LocalTime.parse(dadosPiloto.get(3), timeFormatter);
+        LocalTime tempo = LocalTime.parse(
+                "00:" + dadosPiloto.get(3),
+                timeFormatter
+        );
+
+        System.out.println(dadosPiloto);
 
         return new Piloto(
                 data,

@@ -48,12 +48,13 @@
 <body>
 
 <main>
-    <h1>Ordenador de Empresas</h1>
+    <h1>Ordenador de Empresas e Voltas</h1>
 
     <p>
         Ordene empresas pelo valor de mercado
-        utilizando o algoritmo Bubble Sort.
+        utilizando o algoritmo Bubble Sort. ou voltas usando o insertionSort
     </p>
+
 
     <form id="formulario"
           method="post"
@@ -66,10 +67,17 @@
                accept=".txt"
                required>
 
+        <label>
+            <select name="tipo">
+                <option value="EMPRESA">Empresas</option>
+                <option value="VOLTAS">VOLTAS</option>
+            </select>
+        </label>
+
         <button type="submit">Processar arquivo</button>
     </form>
 
-    <a id="download" download="empresa-ordenada.txt">
+    <a id="download" download="lista.txt">
         Baixar arquivo ordenado
     </a>
 </main>

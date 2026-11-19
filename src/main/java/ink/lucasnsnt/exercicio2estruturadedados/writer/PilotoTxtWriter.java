@@ -24,9 +24,9 @@ public class PilotoTxtWriter {
 
                 writer.write
                         (p.getDataHora()
-                                + " | " + p.getNome()
-                                + " | " + p.getEquipe()
-                                + " | " + p.getTempo());
+                                + " - " + p.getNome()
+                                + " - " + p.getEquipe()
+                                + " - " + p.getTempo());
                 writer.newLine();
 
             }
