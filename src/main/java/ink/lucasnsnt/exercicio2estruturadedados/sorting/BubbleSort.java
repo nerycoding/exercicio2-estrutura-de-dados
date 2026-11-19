@@ -20,7 +20,6 @@ public class BubbleSort {
                 if (empresaAnterior.getValorDeMercado().compareTo(empresaAtual.getValorDeMercado()) < 0) {
                     empresas.set(j - 1, empresaAtual);
                     empresas.set(j, empresaAnterior);
-
                 }
 
             }

@@ -30,7 +30,7 @@ public class EmpresaTxtReader {
                 new InputStreamReader(arquivo, StandardCharsets.UTF_8);
         try(BufferedReader br = new BufferedReader(isr)) {
             return br.lines()
-                    .map(e -> converteEmpresa.converteLinha(e))
+                    .map(converteEmpresa::converteLinha)
                     .collect(Collectors.toCollection(ArrayList::new));
 
         }
